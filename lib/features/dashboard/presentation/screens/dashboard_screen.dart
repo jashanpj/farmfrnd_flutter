@@ -121,16 +121,16 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Always show MenuColumn at the top
-          SizedBox(height: 20),
-          MenuColumn(),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
+          const MenuColumn(),
+          const SizedBox(height: 20),
           Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Text(
                 "Top Categories",
                 style: Theme.of(context).textTheme.displayLarge,
               )),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Flexible(
             fit: FlexFit.loose,
             child: state.state == DashboardConcreteState.loading

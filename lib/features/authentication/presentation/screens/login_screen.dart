@@ -35,11 +35,26 @@ class LoginScreen extends ConsumerWidget {
     );
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TDD with Riverpod'),
+        title: const Text('Login'),
       ),
       body: SafeArea(
         child: Column(
           children: [
+            const SizedBox(
+              height: 60,
+            ),
+            SizedBox(
+              height: 200,
+              width: 180,
+              child: Image.asset(
+                "assets/logo.png",
+                fit: BoxFit.fill,
+                width: double.infinity,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             AuthField(
               hintText: 'Username',
               controller: usernameController,
@@ -52,6 +67,34 @@ class LoginScreen extends ConsumerWidget {
             state.maybeMap(
               loading: (_) => const Center(child: CircularProgressIndicator()),
               orElse: () => loginButton(ref),
+            ),
+            const SizedBox(
+              height: 150,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Don't have an account yet? ",
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColor, // Background color
+                    onPrimary: Colors.white, // Text color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+                    textStyle: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  onPressed: () {
+                    // Add your onPressed code here!
+                  },
+                  child: const Text("SignUp"),
+                ),
+              ],
             ),
           ],
         ),

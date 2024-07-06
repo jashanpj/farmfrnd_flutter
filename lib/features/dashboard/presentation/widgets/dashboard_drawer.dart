@@ -20,6 +20,7 @@ class DashboardDrawer extends ConsumerWidget {
       bottom: false,
       child: Drawer(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             UserAccountsDrawerHeader(
               margin: EdgeInsets.zero,
@@ -68,6 +69,30 @@ class DashboardDrawer extends ConsumerWidget {
                   ),
                 )
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "Profile",
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    "About Farmfrnd",
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    "Learn farming with us",
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           ],
         ),
