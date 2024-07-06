@@ -7,15 +7,15 @@ part 'category_model.g.dart';
 class Category with _$Category {
   const factory Category({
     required String name,
-    required String nameML,
-    required String imageUrl,
-    required String fruitOrVegetable,
-    required String sequenceNo,
-    required String thumbnailUrl,
+    required String? nameML,
+    required String? imageUrl,
+    required String? fruitOrVegetable,
+    required String? sequenceNo,
+    required String? thumbnailUrl,
     required String createdAt,
     required String updatedAt,
-    required int parentCategoryId,
-    required List<WhishList> whishListIds,
+    required int? parentCategoryId,
+    required List<WhishList>? whishListIds,
   }) = _Category;
 
   factory Category.fromJson(Map<String, dynamic> json) =>

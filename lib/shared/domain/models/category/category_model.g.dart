@@ -9,16 +9,16 @@ part of 'category_model.dart';
 _$CategoryImpl _$$CategoryImplFromJson(Map<String, dynamic> json) =>
     _$CategoryImpl(
       name: json['name'] as String,
-      nameML: json['nameML'] as String,
-      imageUrl: json['imageUrl'] as String,
-      fruitOrVegetable: json['fruitOrVegetable'] as String,
-      sequenceNo: json['sequenceNo'] as String,
-      thumbnailUrl: json['thumbnailUrl'] as String,
+      nameML: json['nameML'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      fruitOrVegetable: json['fruitOrVegetable'] as String?,
+      sequenceNo: json['sequenceNo'] as String?,
+      thumbnailUrl: json['thumbnailUrl'] as String?,
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
-      parentCategoryId: json['parentCategoryId'] as int,
-      whishListIds: (json['whishListIds'] as List<dynamic>)
-          .map((e) => WhishList.fromJson(e as Map<String, dynamic>))
+      parentCategoryId: json['parentCategoryId'] as int?,
+      whishListIds: (json['whishListIds'] as List<dynamic>?)
+          ?.map((e) => WhishList.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

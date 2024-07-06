@@ -22,7 +22,7 @@ class DashboardCategoryRemoteDatasource extends DashboardCategoryDatasource {
     print("auth Token in Categorycall $token");
     // update the token for requests
     networkService.updateHeader(
-      {'Authorization': token},
+      {'Authorization': 'Bearer $token'},
     );
     final response = await networkService.get('/categories');
 

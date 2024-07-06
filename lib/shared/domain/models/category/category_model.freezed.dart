@@ -21,15 +21,15 @@ Category _$CategoryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Category {
   String get name => throw _privateConstructorUsedError;
-  String get nameML => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
-  String get fruitOrVegetable => throw _privateConstructorUsedError;
-  String get sequenceNo => throw _privateConstructorUsedError;
-  String get thumbnailUrl => throw _privateConstructorUsedError;
+  String? get nameML => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
+  String? get fruitOrVegetable => throw _privateConstructorUsedError;
+  String? get sequenceNo => throw _privateConstructorUsedError;
+  String? get thumbnailUrl => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
   String get updatedAt => throw _privateConstructorUsedError;
-  int get parentCategoryId => throw _privateConstructorUsedError;
-  List<WhishList> get whishListIds => throw _privateConstructorUsedError;
+  int? get parentCategoryId => throw _privateConstructorUsedError;
+  List<WhishList>? get whishListIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,15 +44,15 @@ abstract class $CategoryCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      String nameML,
-      String imageUrl,
-      String fruitOrVegetable,
-      String sequenceNo,
-      String thumbnailUrl,
+      String? nameML,
+      String? imageUrl,
+      String? fruitOrVegetable,
+      String? sequenceNo,
+      String? thumbnailUrl,
       String createdAt,
       String updatedAt,
-      int parentCategoryId,
-      List<WhishList> whishListIds});
+      int? parentCategoryId,
+      List<WhishList>? whishListIds});
 }
 
 /// @nodoc
@@ -69,41 +69,41 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
   @override
   $Res call({
     Object? name = null,
-    Object? nameML = null,
-    Object? imageUrl = null,
-    Object? fruitOrVegetable = null,
-    Object? sequenceNo = null,
-    Object? thumbnailUrl = null,
+    Object? nameML = freezed,
+    Object? imageUrl = freezed,
+    Object? fruitOrVegetable = freezed,
+    Object? sequenceNo = freezed,
+    Object? thumbnailUrl = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
-    Object? parentCategoryId = null,
-    Object? whishListIds = null,
+    Object? parentCategoryId = freezed,
+    Object? whishListIds = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      nameML: null == nameML
+      nameML: freezed == nameML
           ? _value.nameML
           : nameML // ignore: cast_nullable_to_non_nullable
-              as String,
-      imageUrl: null == imageUrl
+              as String?,
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      fruitOrVegetable: null == fruitOrVegetable
+              as String?,
+      fruitOrVegetable: freezed == fruitOrVegetable
           ? _value.fruitOrVegetable
           : fruitOrVegetable // ignore: cast_nullable_to_non_nullable
-              as String,
-      sequenceNo: null == sequenceNo
+              as String?,
+      sequenceNo: freezed == sequenceNo
           ? _value.sequenceNo
           : sequenceNo // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnailUrl: null == thumbnailUrl
+              as String?,
+      thumbnailUrl: freezed == thumbnailUrl
           ? _value.thumbnailUrl
           : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -112,14 +112,14 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String,
-      parentCategoryId: null == parentCategoryId
+      parentCategoryId: freezed == parentCategoryId
           ? _value.parentCategoryId
           : parentCategoryId // ignore: cast_nullable_to_non_nullable
-              as int,
-      whishListIds: null == whishListIds
+              as int?,
+      whishListIds: freezed == whishListIds
           ? _value.whishListIds
           : whishListIds // ignore: cast_nullable_to_non_nullable
-              as List<WhishList>,
+              as List<WhishList>?,
     ) as $Val);
   }
 }
@@ -134,15 +134,15 @@ abstract class _$$CategoryImplCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
-      String nameML,
-      String imageUrl,
-      String fruitOrVegetable,
-      String sequenceNo,
-      String thumbnailUrl,
+      String? nameML,
+      String? imageUrl,
+      String? fruitOrVegetable,
+      String? sequenceNo,
+      String? thumbnailUrl,
       String createdAt,
       String updatedAt,
-      int parentCategoryId,
-      List<WhishList> whishListIds});
+      int? parentCategoryId,
+      List<WhishList>? whishListIds});
 }
 
 /// @nodoc
@@ -157,41 +157,41 @@ class __$$CategoryImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? nameML = null,
-    Object? imageUrl = null,
-    Object? fruitOrVegetable = null,
-    Object? sequenceNo = null,
-    Object? thumbnailUrl = null,
+    Object? nameML = freezed,
+    Object? imageUrl = freezed,
+    Object? fruitOrVegetable = freezed,
+    Object? sequenceNo = freezed,
+    Object? thumbnailUrl = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
-    Object? parentCategoryId = null,
-    Object? whishListIds = null,
+    Object? parentCategoryId = freezed,
+    Object? whishListIds = freezed,
   }) {
     return _then(_$CategoryImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      nameML: null == nameML
+      nameML: freezed == nameML
           ? _value.nameML
           : nameML // ignore: cast_nullable_to_non_nullable
-              as String,
-      imageUrl: null == imageUrl
+              as String?,
+      imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      fruitOrVegetable: null == fruitOrVegetable
+              as String?,
+      fruitOrVegetable: freezed == fruitOrVegetable
           ? _value.fruitOrVegetable
           : fruitOrVegetable // ignore: cast_nullable_to_non_nullable
-              as String,
-      sequenceNo: null == sequenceNo
+              as String?,
+      sequenceNo: freezed == sequenceNo
           ? _value.sequenceNo
           : sequenceNo // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnailUrl: null == thumbnailUrl
+              as String?,
+      thumbnailUrl: freezed == thumbnailUrl
           ? _value.thumbnailUrl
           : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -200,14 +200,14 @@ class __$$CategoryImplCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String,
-      parentCategoryId: null == parentCategoryId
+      parentCategoryId: freezed == parentCategoryId
           ? _value.parentCategoryId
           : parentCategoryId // ignore: cast_nullable_to_non_nullable
-              as int,
-      whishListIds: null == whishListIds
+              as int?,
+      whishListIds: freezed == whishListIds
           ? _value._whishListIds
           : whishListIds // ignore: cast_nullable_to_non_nullable
-              as List<WhishList>,
+              as List<WhishList>?,
     ));
   }
 }
@@ -225,7 +225,7 @@ class _$CategoryImpl implements _Category {
       required this.createdAt,
       required this.updatedAt,
       required this.parentCategoryId,
-      required final List<WhishList> whishListIds})
+      required final List<WhishList>? whishListIds})
       : _whishListIds = whishListIds;
 
   factory _$CategoryImpl.fromJson(Map<String, dynamic> json) =>
@@ -234,27 +234,29 @@ class _$CategoryImpl implements _Category {
   @override
   final String name;
   @override
-  final String nameML;
+  final String? nameML;
   @override
-  final String imageUrl;
+  final String? imageUrl;
   @override
-  final String fruitOrVegetable;
+  final String? fruitOrVegetable;
   @override
-  final String sequenceNo;
+  final String? sequenceNo;
   @override
-  final String thumbnailUrl;
+  final String? thumbnailUrl;
   @override
   final String createdAt;
   @override
   final String updatedAt;
   @override
-  final int parentCategoryId;
-  final List<WhishList> _whishListIds;
+  final int? parentCategoryId;
+  final List<WhishList>? _whishListIds;
   @override
-  List<WhishList> get whishListIds {
+  List<WhishList>? get whishListIds {
+    final value = _whishListIds;
+    if (value == null) return null;
     if (_whishListIds is EqualUnmodifiableListView) return _whishListIds;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_whishListIds);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -319,15 +321,15 @@ class _$CategoryImpl implements _Category {
 abstract class _Category implements Category {
   const factory _Category(
       {required final String name,
-      required final String nameML,
-      required final String imageUrl,
-      required final String fruitOrVegetable,
-      required final String sequenceNo,
-      required final String thumbnailUrl,
+      required final String? nameML,
+      required final String? imageUrl,
+      required final String? fruitOrVegetable,
+      required final String? sequenceNo,
+      required final String? thumbnailUrl,
       required final String createdAt,
       required final String updatedAt,
-      required final int parentCategoryId,
-      required final List<WhishList> whishListIds}) = _$CategoryImpl;
+      required final int? parentCategoryId,
+      required final List<WhishList>? whishListIds}) = _$CategoryImpl;
 
   factory _Category.fromJson(Map<String, dynamic> json) =
       _$CategoryImpl.fromJson;
@@ -335,23 +337,23 @@ abstract class _Category implements Category {
   @override
   String get name;
   @override
-  String get nameML;
+  String? get nameML;
   @override
-  String get imageUrl;
+  String? get imageUrl;
   @override
-  String get fruitOrVegetable;
+  String? get fruitOrVegetable;
   @override
-  String get sequenceNo;
+  String? get sequenceNo;
   @override
-  String get thumbnailUrl;
+  String? get thumbnailUrl;
   @override
   String get createdAt;
   @override
   String get updatedAt;
   @override
-  int get parentCategoryId;
+  int? get parentCategoryId;
   @override
-  List<WhishList> get whishListIds;
+  List<WhishList>? get whishListIds;
   @override
   @JsonKey(ignore: true)
   _$$CategoryImplCopyWith<_$CategoryImpl> get copyWith =>

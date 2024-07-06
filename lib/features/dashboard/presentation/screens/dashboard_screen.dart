@@ -4,7 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/features/dashboard/presentation/providers/dashboard_state_provider.dart';
 import 'package:flutter_project/features/dashboard/presentation/providers/state/dashboard_state.dart';
+import 'package:flutter_project/features/dashboard/presentation/widgets/category_grid.dart';
 import 'package:flutter_project/features/dashboard/presentation/widgets/dashboard_drawer.dart';
+import 'package:flutter_project/features/dashboard/presentation/widgets/menu_column.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 @RoutePage()
@@ -113,63 +115,57 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         ],
       ),
       drawer: const DashboardDrawer(),
-      body: state.state == DashboardConcreteState.loading
-          ? const Center(child: CircularProgressIndicator())
-          : state.hasData
-              ? Column(
-                  children: [
-                    Expanded(
-                      child: Scrollbar(
-                        controller: scrollController,
-                        child: ListView.separated(
-                          separatorBuilder: (_, __) => const Divider(),
-                          controller: scrollController,
-                          itemCount: state.categoryList.length,
-                          itemBuilder: (context, index) {
-                            final product = state.categoryList[index];
-                            return ListTile(
-                              leading: CircleAvatar(
-                                  backgroundImage:
-                                      NetworkImage(product.imageUrl)),
-                              title: Text(
-                                product.name,
-                                style: Theme.of(context).textTheme.bodyLarge,
-                              ),
-                              trailing: Text(
-                                '\$${15}',
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                              subtitle: Text(
-                                product.nameML,
-                                style: Theme.of(context).textTheme.bodyMedium,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            );
-                          },
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Always show MenuColumn at the top
+          SizedBox(height: 20),
+          MenuColumn(),
+          SizedBox(height: 20),
+          Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Text(
+                "Top Categories",
+                style: Theme.of(context).textTheme.displayLarge,
+              )),
+          SizedBox(height: 10),
+          Flexible(
+            fit: FlexFit.loose,
+            child: state.state == DashboardConcreteState.loading
+                ? const Center(child: CircularProgressIndicator())
+                : state.hasData
+                    ? Column(
+                        children: [
+                          CategoryGrid(
+                            scrollController: scrollController,
+                            categoryList: state.categoryList,
+                          ),
+                          if (state.state ==
+                              DashboardConcreteState.fetchingMore)
+                            const Padding(
+                              padding: EdgeInsets.only(bottom: 16.0),
+                              child: CircularProgressIndicator(),
+                            ),
+                        ],
+                      )
+                    : Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                          child: Text(
+                            state.message,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    if (state.state == DashboardConcreteState.fetchingMore)
-                      const Padding(
-                        padding: EdgeInsets.only(bottom: 16.0),
-                        child: CircularProgressIndicator(),
-                      ),
-                  ],
-                )
-              : Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                    child: Text(
-                      state.message,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
+          ),
+        ],
+      ),
     );
   }
 

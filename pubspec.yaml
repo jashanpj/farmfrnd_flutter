@@ -21,6 +21,7 @@ dependencies:
   json_annotation: ^4.7.0
   shared_preferences: ^2.0.17
   state_notifier: ^0.7.2+1
+  flutter_svg: ^1.0.3
 
 dev_dependencies:
   auto_route_generator: ^7.1.1
@@ -40,3 +41,8 @@ flutter:
 
   assets:
     - test/features/dashboard/data/datasource/
+    - assets/placeholder.svg
+    - assets/buy.svg
+    - assets/buy1.png
+    - assets/sell1.png
+    - assets/exchange1.png
