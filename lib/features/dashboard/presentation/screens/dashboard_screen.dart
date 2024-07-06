@@ -39,9 +39,9 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     if (scrollController.position.maxScrollExtent == scrollController.offset) {
       final notifier = ref.read(dashboardNotifierProvider.notifier);
       if (isSearchActive) {
-        notifier.searchProducts(searchController.text);
+        // notifier.searchProducts(searchController.text);
       } else {
-        notifier.fetchProducts();
+        notifier.fetchCategories();
       }
     }
   }
@@ -59,7 +59,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
       dashboardNotifierProvider.select((value) => value),
       ((DashboardState? previous, DashboardState next) {
         //show Snackbar on failure
-        if (next.state == DashboardConcreteState.fetchedAllProducts) {
+        if (next.state == DashboardConcreteState.fetchedAllCategories) {
           if (next.message.isNotEmpty) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(next.message.toString())));
@@ -102,7 +102,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
 
               ref.read(dashboardNotifierProvider.notifier).resetState();
               if (!isSearchActive) {
-                ref.read(dashboardNotifierProvider.notifier).fetchProducts();
+                ref.read(dashboardNotifierProvider.notifier).fetchCategories();
               }
               refreshScrollControllerListener();
             },
@@ -124,23 +124,23 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                         child: ListView.separated(
                           separatorBuilder: (_, __) => const Divider(),
                           controller: scrollController,
-                          itemCount: state.productList.length,
+                          itemCount: state.categoryList.length,
                           itemBuilder: (context, index) {
-                            final product = state.productList[index];
+                            final product = state.categoryList[index];
                             return ListTile(
                               leading: CircleAvatar(
                                   backgroundImage:
-                                      NetworkImage(product.thumbnail)),
+                                      NetworkImage(product.imageUrl)),
                               title: Text(
-                                product.title,
+                                product.name,
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
                               trailing: Text(
-                                '\$${product.price}',
+                                '\$${15}',
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                               subtitle: Text(
-                                product.description,
+                                product.nameML,
                                 style: Theme.of(context).textTheme.bodyMedium,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
@@ -174,9 +174,9 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   }
 
   _onSearchChanged(String query) {
-    if (_debounce?.isActive ?? false) _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 500), () {
-      ref.read(dashboardNotifierProvider.notifier).searchProducts(query);
-    });
+    // if (_debounce?.isActive ?? false) _debounce?.cancel();
+    // _debounce = Timer(const Duration(milliseconds: 500), () {
+    //   ref.read(dashboardNotifierProvider.notifier).searchProducts(query);
+    // });
   }
 }

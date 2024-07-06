@@ -1,87 +1,124 @@
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
-  final int id;
-  final String username;
-  final String password;
+  final String id;
+  final String fullName;
+  final String role;
+  final List<double> location;
+  final String status;
   final String email;
-  final String firstName;
-  final String lastName;
-  final String gender;
-  final String image;
-  final String token;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final int loginAttempts;
+
   const User({
-    this.id = 0,
-    this.username = '',
-    this.password = '',
-    this.email = '',
-    this.firstName = '',
-    this.lastName = '',
-    this.gender = '',
-    this.image = '',
-    this.token = '',
+    required this.id,
+    required this.fullName,
+    required this.role,
+    required this.location,
+    required this.status,
+    required this.email,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.loginAttempts,
   });
 
   @override
   List<Object?> get props => [
         id,
-        username,
-        password,
+        fullName,
+        role,
+        location,
+        status,
         email,
-        firstName,
-        lastName,
-        gender,
-        image,
-        token,
+        createdAt,
+        updatedAt,
+        loginAttempts,
       ];
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'id': id,
-      'username': username,
-      'password': password,
+      'fullName': fullName,
+      'role': role,
+      'location': location,
+      'status': status,
       'email': email,
-      'firstName': firstName,
-      'lastName': lastName,
-      'gender': gender,
-      'image': image,
-      'token': token,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
+      'loginAttempts': loginAttempts,
     };
   }
 
   factory User.fromJson(Map<String, dynamic> map) => User(
-        id: map['id'] ?? 0,
-        username: map['username'] ?? '',
-        password: map['password'] ?? '',
+        id: map['id'] ?? '',
+        fullName: map['fullName'] ?? '',
+        role: map['role'] ?? '',
+        location: (map['location'] as List<dynamic>?)
+                ?.map((item) => item as double)
+                .toList() ??
+            [],
+        status: map['status'] ?? '',
         email: map['email'] ?? '',
-        firstName: map['firstName'] ?? '',
-        lastName: map['lastName'] ?? '',
-        gender: map['gender'] ?? '',
-        image: map['image'] ?? '',
-        token: map['token'] ?? '',
+        createdAt: DateTime.parse(map['createdAt']),
+        updatedAt: DateTime.parse(map['updatedAt']),
+        loginAttempts: map['loginAttempts'] ?? 0,
       );
 
   User copyWith({
-    int? id,
-    String? username,
-    String? password,
+    String? id,
+    String? fullName,
+    String? role,
+    List<double>? location,
+    String? status,
     String? email,
-    String? firstName,
-    String? lastName,
-    String? gender,
-    String? image,
-    String? token,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    int? loginAttempts,
   }) {
     return User(
       id: id ?? this.id,
-      username: username ?? this.username,
-      password: password ?? this.password,
+      fullName: fullName ?? this.fullName,
+      role: role ?? this.role,
+      location: location ?? this.location,
+      status: status ?? this.status,
       email: email ?? this.email,
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
-      gender: gender ?? this.gender,
-      image: image ?? this.image,
-      token: token ?? this.token,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      loginAttempts: loginAttempts ?? this.loginAttempts,
     );
   }
+}
+
+class AuthResponse extends Equatable {
+  final int exp;
+  final String message;
+  final String token;
+  final User user;
+
+  const AuthResponse({
+    required this.exp,
+    required this.message,
+    required this.token,
+    required this.user,
+  });
+
+  @override
+  List<Object?> get props => [exp, message, token, user];
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'exp': exp,
+      'message': message,
+      'token': token,
+      'user': user.toJson(),
+    };
+  }
+
+  factory AuthResponse.fromJson(Map<String, dynamic> map) => AuthResponse(
+        exp: map['exp'],
+        message: map['message'] ?? '',
+        token: map['token'] ?? '',
+        user: User.fromJson(map['user'] ?? {}),
+      );
 }

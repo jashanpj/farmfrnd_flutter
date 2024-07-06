@@ -1,36 +1,48 @@
+import 'package:flutter_project/shared/data/local/storage_service.dart';
 import 'package:flutter_project/shared/data/remote/remote.dart';
 import 'package:flutter_project/shared/domain/models/either.dart';
 import 'package:flutter_project/shared/domain/models/models.dart';
 import 'package:flutter_project/shared/exceptions/http_exception.dart';
 
 abstract class LoginUserDataSource {
-  Future<Either<AppException, User>> loginUser({required User user});
+  Future<Either<AppException, User>> loginUser(
+      {required String email, required String password});
 }
 
 class LoginUserRemoteDataSource implements LoginUserDataSource {
   final NetworkService networkService;
+  final StorageService storage;
 
-  LoginUserRemoteDataSource(this.networkService);
+  LoginUserRemoteDataSource(this.networkService, this.storage);
 
   @override
-  Future<Either<AppException, User>> loginUser({required User user}) async {
+  Future<Either<AppException, User>> loginUser(
+      {required String email, required String password}) async {
     try {
       final eitherType = await networkService.post(
-        '/auth/login',
-        data: user.toJson(),
+        '/users/login',
+        data: {
+          'email': email,
+          'password': password,
+        },
       );
       return eitherType.fold(
         (exception) {
           return Left(exception);
         },
         (response) {
-          final user = User.fromJson(response.data);
+          final user = AuthResponse.fromJson(response.data);
+          final token = user.token;
+
           // update the token for requests
           networkService.updateHeader(
-            {'Authorization': user.token},
+            {'Authorization': token},
           );
 
-          return Right(user);
+          storage.set('authToken', token);
+          print("authToken $token");
+
+          return Right(user.user);
         },
       );
     } catch (e) {

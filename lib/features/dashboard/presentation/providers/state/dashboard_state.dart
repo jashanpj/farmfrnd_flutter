@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
-import 'package:flutter_project/shared/domain/models/product/product_model.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_project/shared/domain/models/category/category_model.dart'
+    as cat;
 
 enum DashboardConcreteState {
   initial,
@@ -8,11 +10,11 @@ enum DashboardConcreteState {
   loaded,
   failure,
   fetchingMore,
-  fetchedAllProducts
+  fetchedAllCategories
 }
 
 class DashboardState extends Equatable {
-  final List<Product> productList;
+  final List<cat.Category> categoryList;
   final int total;
   final int page;
   final bool hasData;
@@ -20,7 +22,7 @@ class DashboardState extends Equatable {
   final String message;
   final bool isLoading;
   const DashboardState({
-    this.productList = const [],
+    this.categoryList = const [],
     this.isLoading = false,
     this.hasData = false,
     this.state = DashboardConcreteState.initial,
@@ -30,7 +32,7 @@ class DashboardState extends Equatable {
   });
 
   const DashboardState.initial({
-    this.productList = const [],
+    this.categoryList = const [],
     this.total = 0,
     this.page = 0,
     this.isLoading = false,
@@ -40,7 +42,7 @@ class DashboardState extends Equatable {
   });
 
   DashboardState copyWith({
-    List<Product>? productList,
+    List<cat.Category>? categoryList,
     int? total,
     int? page,
     bool? hasData,
@@ -50,7 +52,7 @@ class DashboardState extends Equatable {
   }) {
     return DashboardState(
       isLoading: isLoading ?? this.isLoading,
-      productList: productList ?? this.productList,
+      categoryList: categoryList ?? this.categoryList,
       total: total ?? this.total,
       page: page ?? this.page,
       hasData: hasData ?? this.hasData,
@@ -61,9 +63,9 @@ class DashboardState extends Equatable {
 
   @override
   String toString() {
-    return 'DashboardState(isLoading:$isLoading, productLength: ${productList.length},total:$total page: $page, hasData: $hasData, state: $state, message: $message)';
+    return 'DashboardState(isLoading:$isLoading, productLength: ${categoryList.length},total:$total page: $page, hasData: $hasData, state: $state, message: $message)';
   }
 
   @override
-  List<Object?> get props => [productList, page, hasData, state, message];
+  List<Object?> get props => [categoryList, page, hasData, state, message];
 }

@@ -27,16 +27,16 @@ class DashboardDrawer extends ConsumerWidget {
                 color: Theme.of(context).colorScheme.background,
               ),
               accountName: Text(
-                '${currentUser?.firstName}',
+                '${currentUser?.fullName}',
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               accountEmail: Text(
                 '${currentUser?.email}',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage('${currentUser?.image}'),
-              ),
+              currentAccountPicture: const CircleAvatar(
+                  // backgroundImage: NetworkImage('${currentUser?.image}'),
+                  ),
               otherAccountsPictures: [
                 InkWell(
                   onTap: () async {

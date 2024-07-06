@@ -23,9 +23,9 @@ extension _EnvProperties on AppEnvironment {
   };
 
   static const _connectionStrings = {
-    AppEnvironment.DEV: 'https://api.spoonacular.com',
-    AppEnvironment.STAGING: 'https://api.spoonacular.com',
-    AppEnvironment.PROD: 'https://api.spoonacular.com',
+    AppEnvironment.DEV: 'https://api.farmfrnd.com/api',
+    AppEnvironment.STAGING: 'https://api.farmfrnd.com/api',
+    AppEnvironment.PROD: 'https://api.farmfrnd.com/api',
   };
 
   static const _envs = {

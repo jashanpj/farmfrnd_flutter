@@ -1,26 +1,48 @@
 const int PER_PAGE_LIMIT = 20;
 
 class PaginatedResponse<T> {
-  final int total;
+  final int totalDocs;
+  final int limit;
+  final int totalPages;
+  final int page;
+  final int pagingCounter;
+  final bool hasPrevPage;
+  final bool hasNextPage;
+  final int? prevPage;
+  final int? nextPage;
+  final List<T> docs;
 
-  final int skip;
+  PaginatedResponse({
+    required this.totalDocs,
+    required this.limit,
+    required this.totalPages,
+    required this.page,
+    required this.pagingCounter,
+    required this.hasPrevPage,
+    required this.hasNextPage,
+    this.prevPage,
+    this.nextPage,
+    required this.docs,
+  });
 
-  static const limit = PER_PAGE_LIMIT;
+  factory PaginatedResponse.fromJson(dynamic json, List<T> docs,
+      {Function(dynamic json)? fixture}) {
+    return PaginatedResponse(
+      totalDocs: json['totalDocs'] ?? 0,
+      limit: json['limit'] ?? PER_PAGE_LIMIT,
+      totalPages: json['totalPages'] ?? 0,
+      page: json['page'] ?? 0,
+      pagingCounter: json['pagingCounter'] ?? 0,
+      hasPrevPage: json['hasPrevPage'] ?? false,
+      hasNextPage: json['hasNextPage'] ?? false,
+      prevPage: json['prevPage'],
+      nextPage: json['nextPage'],
+      docs: docs,
+    );
+  }
 
-  final List<T> data;
-
-  PaginatedResponse(
-      {required this.total, required this.skip, required this.data});
-
-  factory PaginatedResponse.fromJson(dynamic json, List<T> data,
-          {Function(dynamic json)? fixture}) =>
-      PaginatedResponse(
-        total: json['total'] ?? 0,
-        skip: json['skip'] ?? 0,
-        data: data,
-      );
   @override
   String toString() {
-    return 'PaginatedResponse(total:$total, skip:$skip, data:${data.length})';
+    return 'PaginatedResponse(totalDocs:$totalDocs, limit:$limit, totalPages:$totalPages, page:$page, pagingCounter:$pagingCounter, hasPrevPage:$hasPrevPage, hasNextPage:$hasNextPage, prevPage:$prevPage, nextPage:$nextPage, docs:${docs.length})';
   }
 }

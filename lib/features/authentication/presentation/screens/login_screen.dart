@@ -14,9 +14,9 @@ class LoginScreen extends ConsumerWidget {
   LoginScreen({Key? key}) : super(key: key);
 
   final TextEditingController usernameController =
-      TextEditingController(text: 'kminchelle');
+      TextEditingController(text: 'jash32@gmail.com');
   final TextEditingController passwordController =
-      TextEditingController(text: '0lelplR');
+      TextEditingController(text: 'jashan@123');
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(authStateNotifierProvider);

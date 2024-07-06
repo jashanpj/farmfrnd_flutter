@@ -46,4 +46,17 @@ class SharedPrefsService implements StorageService {
     sharedPreferences = await initCompleter.future;
     return await sharedPreferences!.setString(key, data.toString());
   }
+
+  // // Bearer Token
+  // Future<void> setToken(String token) async {
+  //   await sharedPreferences?.setString('auth_token', token);
+  // }
+
+  // Future<String?> getToken() async {
+  //   return sharedPreferences?.getString('auth_token');
+  // }
+
+  // Future<void> removeToken() async {
+  //   await sharedPreferences?.remove('auth_token');
+  // }
 }

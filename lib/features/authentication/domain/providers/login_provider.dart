@@ -3,12 +3,14 @@ import 'package:flutter_project/features/authentication/data/repositories/authen
 import 'package:flutter_project/features/authentication/domain/repositories/auth_repository.dart';
 import 'package:flutter_project/shared/data/remote/remote.dart';
 import 'package:flutter_project/shared/domain/providers/dio_network_service_provider.dart';
+import 'package:flutter_project/shared/domain/providers/shared_preferences_storage_service_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final authDataSourceProvider =
-    Provider.family<LoginUserDataSource, NetworkService>(
-  (_, networkService) => LoginUserRemoteDataSource(networkService),
-);
+    Provider.family<LoginUserDataSource, NetworkService>((ref, networkService) {
+  final storageService = ref.watch(storageServiceProvider);
+  return LoginUserRemoteDataSource(networkService, storageService);
+});
 
 final authRepositoryProvider = Provider<AuthenticationRepository>(
   (ref) {
