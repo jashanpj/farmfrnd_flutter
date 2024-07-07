@@ -2,25 +2,24 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/features/dashboard/presentation/providers/dashboard_state_provider.dart';
-import 'package:flutter_project/features/dashboard/presentation/providers/state/dashboard_state.dart';
-import 'package:flutter_project/features/dashboard/presentation/widgets/category_grid.dart';
+import 'package:flutter_project/features/buy/presentation/providers/buy_state_provider.dart';
+import 'package:flutter_project/features/buy/presentation/widgets/product_list.dart';
 import 'package:flutter_project/features/dashboard/presentation/widgets/dashboard_drawer.dart';
-import 'package:flutter_project/features/dashboard/presentation/widgets/menu_column.dart';
-import 'package:flutter_project/routes/app_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-@RoutePage()
-class DashboardScreen extends ConsumerStatefulWidget {
-  static const String routeName = 'DashboardScreen';
+import '../providers/state/buy_state.dart';
 
-  const DashboardScreen({Key? key}) : super(key: key);
+@RoutePage()
+class BuyScreen extends ConsumerStatefulWidget {
+  static const String routeName = 'BuyScreen';
+
+  const BuyScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<DashboardScreen> createState() => _DashboardScreenState();
+  ConsumerState<BuyScreen> createState() => _BuyScreenState();
 }
 
-class _DashboardScreenState extends ConsumerState<DashboardScreen> {
+class _BuyScreenState extends ConsumerState<BuyScreen> {
   final scrollController = ScrollController();
   final TextEditingController searchController = TextEditingController();
   bool isSearchActive = false;
@@ -40,11 +39,11 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
 
   void scrollControllerListener() {
     if (scrollController.position.maxScrollExtent == scrollController.offset) {
-      final notifier = ref.read(dashboardNotifierProvider.notifier);
+      final notifier = ref.read(buyNotifierProvider.notifier);
       if (isSearchActive) {
         // notifier.searchProducts(searchController.text);
       } else {
-        notifier.fetchCategories();
+        notifier.fetchProducts();
       }
     }
   }
@@ -56,13 +55,13 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(dashboardNotifierProvider);
+    final state = ref.watch(buyNotifierProvider);
 
     ref.listen(
-      dashboardNotifierProvider.select((value) => value),
-      ((DashboardState? previous, DashboardState next) {
+      buyNotifierProvider.select((value) => value),
+      ((BuyState? previous, BuyState next) {
         //show Snackbar on failure
-        if (next.state == DashboardConcreteState.fetchedAllCategories) {
+        if (next.state == BuyConcreteState.fetchedAllProducts) {
           if (next.message.isNotEmpty) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(next.message.toString())));
@@ -94,7 +93,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                 controller: searchController,
                 onChanged: _onSearchChanged,
               )
-            : const Text('Dashboard'),
+            : const Text('FarmFrnd'),
         actions: [
           IconButton(
             onPressed: () {
@@ -103,9 +102,9 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                 isSearchActive = !isSearchActive;
               });
 
-              ref.read(dashboardNotifierProvider.notifier).resetState();
+              ref.read(buyNotifierProvider.notifier).resetState();
               if (!isSearchActive) {
-                ref.read(dashboardNotifierProvider.notifier).fetchCategories();
+                ref.read(buyNotifierProvider.notifier).fetchProducts();
               }
               refreshScrollControllerListener();
             },
@@ -123,28 +122,39 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         children: [
           // Always show MenuColumn at the top
           const SizedBox(height: 20),
-          MenuColumn(onCardTap: _handleCardTap),
-          const SizedBox(height: 20),
+
           Padding(
               padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                "Top Categories",
-                style: Theme.of(context).textTheme.displayLarge,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Buy Products",
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    "Nourish Your Community — Buy Fresh, Buy Local",
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                ],
               )),
           const SizedBox(height: 10),
           Flexible(
             fit: FlexFit.loose,
-            child: state.state == DashboardConcreteState.loading
+            child: state.state == BuyConcreteState.loading
                 ? const Center(child: CircularProgressIndicator())
                 : state.hasData
                     ? Column(
                         children: [
-                          CategoryGrid(
+                          ProductList(
                             scrollController: scrollController,
-                            categoryList: state.categoryList,
+                            productList: state.productsList,
                           ),
-                          if (state.state ==
-                              DashboardConcreteState.fetchingMore)
+                          if (state.state == BuyConcreteState.fetchingMore)
                             const Padding(
                               padding: EdgeInsets.only(bottom: 16.0),
                               child: CircularProgressIndicator(),
@@ -171,9 +181,9 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                               ElevatedButton(
                                 onPressed: () {
                                   // call api
-                                  final notifier = ref
-                                      .read(dashboardNotifierProvider.notifier);
-                                  notifier.fetchCategories();
+                                  final notifier =
+                                      ref.read(buyNotifierProvider.notifier);
+                                  notifier.fetchProducts();
                                 },
                                 child: const Text('Refresh'),
                               ),
@@ -190,43 +200,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   _onSearchChanged(String query) {
     // if (_debounce?.isActive ?? false) _debounce?.cancel();
     // _debounce = Timer(const Duration(milliseconds: 500), () {
-    //   ref.read(dashboardNotifierProvider.notifier).searchProducts(query);
+    //   ref.read(buyNotifierProvider.notifier).searchProducts(query);
     // });
-  }
-
-  void _handleCardTap(String cardName) {
-    // Function to handle tap on card, taking the card name as a parameter
-    switch (cardName) {
-      case 'Buy':
-        AutoRouter.of(context)
-            .pushAndPopUntil(const BuyRoute(), predicate: (_) => false);
-        break;
-
-      case 'Sell':
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('$cardName card tapped!'),
-            duration: const Duration(seconds: 2),
-          ),
-        );
-        break;
-
-      case 'Exchange':
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('$cardName card tapped!'),
-            duration: const Duration(seconds: 2),
-          ),
-        );
-        break;
-      default:
-        break;
-    }
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   SnackBar(
-    //     content: Text('$cardName card tapped!'),
-    //     duration: const Duration(seconds: 2),
-    //   ),
-    // );
   }
 }

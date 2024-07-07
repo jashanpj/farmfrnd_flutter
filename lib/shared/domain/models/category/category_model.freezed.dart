@@ -20,16 +20,16 @@ Category _$CategoryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Category {
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String? get nameML => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
-  String? get fruitOrVegetable => throw _privateConstructorUsedError;
-  String? get sequenceNo => throw _privateConstructorUsedError;
-  String? get thumbnailUrl => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
-  int? get parentCategoryId => throw _privateConstructorUsedError;
-  List<WhishList>? get whishListIds => throw _privateConstructorUsedError;
+  String get nameML => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  String get fruitOrVegetable => throw _privateConstructorUsedError;
+  Map<String, dynamic> get meta => throw _privateConstructorUsedError;
+  @JsonKey(name: 'createdAt')
+  String get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updatedAt')
+  String get updatedDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,16 +43,14 @@ abstract class $CategoryCopyWith<$Res> {
       _$CategoryCopyWithImpl<$Res, Category>;
   @useResult
   $Res call(
-      {String name,
-      String? nameML,
-      String? imageUrl,
-      String? fruitOrVegetable,
-      String? sequenceNo,
-      String? thumbnailUrl,
-      String createdAt,
-      String updatedAt,
-      int? parentCategoryId,
-      List<WhishList>? whishListIds});
+      {String id,
+      String name,
+      String nameML,
+      String imageUrl,
+      String fruitOrVegetable,
+      Map<String, dynamic> meta,
+      @JsonKey(name: 'createdAt') String createdDate,
+      @JsonKey(name: 'updatedAt') String updatedDate});
 }
 
 /// @nodoc
@@ -68,58 +66,48 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
-    Object? nameML = freezed,
-    Object? imageUrl = freezed,
-    Object? fruitOrVegetable = freezed,
-    Object? sequenceNo = freezed,
-    Object? thumbnailUrl = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? parentCategoryId = freezed,
-    Object? whishListIds = freezed,
+    Object? nameML = null,
+    Object? imageUrl = null,
+    Object? fruitOrVegetable = null,
+    Object? meta = null,
+    Object? createdDate = null,
+    Object? updatedDate = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      nameML: freezed == nameML
+      nameML: null == nameML
           ? _value.nameML
           : nameML // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrl: freezed == imageUrl
+              as String,
+      imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fruitOrVegetable: freezed == fruitOrVegetable
+              as String,
+      fruitOrVegetable: null == fruitOrVegetable
           ? _value.fruitOrVegetable
           : fruitOrVegetable // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sequenceNo: freezed == sequenceNo
-          ? _value.sequenceNo
-          : sequenceNo // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _value.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      meta: null == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      createdDate: null == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
               as String,
-      parentCategoryId: freezed == parentCategoryId
-          ? _value.parentCategoryId
-          : parentCategoryId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      whishListIds: freezed == whishListIds
-          ? _value.whishListIds
-          : whishListIds // ignore: cast_nullable_to_non_nullable
-              as List<WhishList>?,
+      updatedDate: null == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -133,16 +121,14 @@ abstract class _$$CategoryImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      String? nameML,
-      String? imageUrl,
-      String? fruitOrVegetable,
-      String? sequenceNo,
-      String? thumbnailUrl,
-      String createdAt,
-      String updatedAt,
-      int? parentCategoryId,
-      List<WhishList>? whishListIds});
+      {String id,
+      String name,
+      String nameML,
+      String imageUrl,
+      String fruitOrVegetable,
+      Map<String, dynamic> meta,
+      @JsonKey(name: 'createdAt') String createdDate,
+      @JsonKey(name: 'updatedAt') String updatedDate});
 }
 
 /// @nodoc
@@ -156,58 +142,48 @@ class __$$CategoryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
-    Object? nameML = freezed,
-    Object? imageUrl = freezed,
-    Object? fruitOrVegetable = freezed,
-    Object? sequenceNo = freezed,
-    Object? thumbnailUrl = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? parentCategoryId = freezed,
-    Object? whishListIds = freezed,
+    Object? nameML = null,
+    Object? imageUrl = null,
+    Object? fruitOrVegetable = null,
+    Object? meta = null,
+    Object? createdDate = null,
+    Object? updatedDate = null,
   }) {
     return _then(_$CategoryImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      nameML: freezed == nameML
+      nameML: null == nameML
           ? _value.nameML
           : nameML // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrl: freezed == imageUrl
+              as String,
+      imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fruitOrVegetable: freezed == fruitOrVegetable
+              as String,
+      fruitOrVegetable: null == fruitOrVegetable
           ? _value.fruitOrVegetable
           : fruitOrVegetable // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sequenceNo: freezed == sequenceNo
-          ? _value.sequenceNo
-          : sequenceNo // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _value.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      meta: null == meta
+          ? _value._meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      createdDate: null == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
               as String,
-      parentCategoryId: freezed == parentCategoryId
-          ? _value.parentCategoryId
-          : parentCategoryId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      whishListIds: freezed == whishListIds
-          ? _value._whishListIds
-          : whishListIds // ignore: cast_nullable_to_non_nullable
-              as List<WhishList>?,
+      updatedDate: null == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -215,53 +191,54 @@ class __$$CategoryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CategoryImpl implements _Category {
-  const _$CategoryImpl(
-      {required this.name,
-      required this.nameML,
-      required this.imageUrl,
-      required this.fruitOrVegetable,
-      required this.sequenceNo,
-      required this.thumbnailUrl,
-      required this.createdAt,
-      required this.updatedAt,
-      required this.parentCategoryId,
-      required final List<WhishList>? whishListIds})
-      : _whishListIds = whishListIds;
+  _$CategoryImpl(
+      {this.id = '',
+      this.name = '',
+      this.nameML = '',
+      this.imageUrl = '',
+      this.fruitOrVegetable = '',
+      final Map<String, dynamic> meta = const {},
+      @JsonKey(name: 'createdAt') required this.createdDate,
+      @JsonKey(name: 'updatedAt') required this.updatedDate})
+      : _meta = meta;
 
   factory _$CategoryImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryImplFromJson(json);
 
   @override
+  @JsonKey()
+  final String id;
+  @override
+  @JsonKey()
   final String name;
   @override
-  final String? nameML;
+  @JsonKey()
+  final String nameML;
   @override
-  final String? imageUrl;
+  @JsonKey()
+  final String imageUrl;
   @override
-  final String? fruitOrVegetable;
+  @JsonKey()
+  final String fruitOrVegetable;
+  final Map<String, dynamic> _meta;
   @override
-  final String? sequenceNo;
-  @override
-  final String? thumbnailUrl;
-  @override
-  final String createdAt;
-  @override
-  final String updatedAt;
-  @override
-  final int? parentCategoryId;
-  final List<WhishList>? _whishListIds;
-  @override
-  List<WhishList>? get whishListIds {
-    final value = _whishListIds;
-    if (value == null) return null;
-    if (_whishListIds is EqualUnmodifiableListView) return _whishListIds;
+  @JsonKey()
+  Map<String, dynamic> get meta {
+    if (_meta is EqualUnmodifiableMapView) return _meta;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableMapView(_meta);
   }
 
   @override
+  @JsonKey(name: 'createdAt')
+  final String createdDate;
+  @override
+  @JsonKey(name: 'updatedAt')
+  final String updatedDate;
+
+  @override
   String toString() {
-    return 'Category(name: $name, nameML: $nameML, imageUrl: $imageUrl, fruitOrVegetable: $fruitOrVegetable, sequenceNo: $sequenceNo, thumbnailUrl: $thumbnailUrl, createdAt: $createdAt, updatedAt: $updatedAt, parentCategoryId: $parentCategoryId, whishListIds: $whishListIds)';
+    return 'Category(id: $id, name: $name, nameML: $nameML, imageUrl: $imageUrl, fruitOrVegetable: $fruitOrVegetable, meta: $meta, createdDate: $createdDate, updatedDate: $updatedDate)';
   }
 
   @override
@@ -269,40 +246,32 @@ class _$CategoryImpl implements _Category {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CategoryImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.nameML, nameML) || other.nameML == nameML) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.fruitOrVegetable, fruitOrVegetable) ||
                 other.fruitOrVegetable == fruitOrVegetable) &&
-            (identical(other.sequenceNo, sequenceNo) ||
-                other.sequenceNo == sequenceNo) &&
-            (identical(other.thumbnailUrl, thumbnailUrl) ||
-                other.thumbnailUrl == thumbnailUrl) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.parentCategoryId, parentCategoryId) ||
-                other.parentCategoryId == parentCategoryId) &&
-            const DeepCollectionEquality()
-                .equals(other._whishListIds, _whishListIds));
+            const DeepCollectionEquality().equals(other._meta, _meta) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       name,
       nameML,
       imageUrl,
       fruitOrVegetable,
-      sequenceNo,
-      thumbnailUrl,
-      createdAt,
-      updatedAt,
-      parentCategoryId,
-      const DeepCollectionEquality().hash(_whishListIds));
+      const DeepCollectionEquality().hash(_meta),
+      createdDate,
+      updatedDate);
 
   @JsonKey(ignore: true)
   @override
@@ -319,516 +288,40 @@ class _$CategoryImpl implements _Category {
 }
 
 abstract class _Category implements Category {
-  const factory _Category(
-      {required final String name,
-      required final String? nameML,
-      required final String? imageUrl,
-      required final String? fruitOrVegetable,
-      required final String? sequenceNo,
-      required final String? thumbnailUrl,
-      required final String createdAt,
-      required final String updatedAt,
-      required final int? parentCategoryId,
-      required final List<WhishList>? whishListIds}) = _$CategoryImpl;
+  factory _Category(
+          {final String id,
+          final String name,
+          final String nameML,
+          final String imageUrl,
+          final String fruitOrVegetable,
+          final Map<String, dynamic> meta,
+          @JsonKey(name: 'createdAt') required final String createdDate,
+          @JsonKey(name: 'updatedAt') required final String updatedDate}) =
+      _$CategoryImpl;
 
   factory _Category.fromJson(Map<String, dynamic> json) =
       _$CategoryImpl.fromJson;
 
   @override
+  String get id;
+  @override
   String get name;
   @override
-  String? get nameML;
+  String get nameML;
   @override
-  String? get imageUrl;
+  String get imageUrl;
   @override
-  String? get fruitOrVegetable;
+  String get fruitOrVegetable;
   @override
-  String? get sequenceNo;
+  Map<String, dynamic> get meta;
   @override
-  String? get thumbnailUrl;
+  @JsonKey(name: 'createdAt')
+  String get createdDate;
   @override
-  String get createdAt;
-  @override
-  String get updatedAt;
-  @override
-  int? get parentCategoryId;
-  @override
-  List<WhishList>? get whishListIds;
+  @JsonKey(name: 'updatedAt')
+  String get updatedDate;
   @override
   @JsonKey(ignore: true)
   _$$CategoryImplCopyWith<_$CategoryImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-WhishList _$WhishListFromJson(Map<String, dynamic> json) {
-  return _WhishList.fromJson(json);
-}
-
-/// @nodoc
-mixin _$WhishList {
-  String get fullName => throw _privateConstructorUsedError;
-  String get role => throw _privateConstructorUsedError;
-  List<String> get location => throw _privateConstructorUsedError;
-  String get otp => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get resetPasswordToken => throw _privateConstructorUsedError;
-  String get resetPasswordExpiration => throw _privateConstructorUsedError;
-  String get salt => throw _privateConstructorUsedError;
-  String get hash => throw _privateConstructorUsedError;
-  int get loginAttempts => throw _privateConstructorUsedError;
-  String get lockUntil => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $WhishListCopyWith<WhishList> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $WhishListCopyWith<$Res> {
-  factory $WhishListCopyWith(WhishList value, $Res Function(WhishList) then) =
-      _$WhishListCopyWithImpl<$Res, WhishList>;
-  @useResult
-  $Res call(
-      {String fullName,
-      String role,
-      List<String> location,
-      String otp,
-      String username,
-      String status,
-      String createdAt,
-      String updatedAt,
-      String email,
-      String resetPasswordToken,
-      String resetPasswordExpiration,
-      String salt,
-      String hash,
-      int loginAttempts,
-      String lockUntil,
-      String password});
-}
-
-/// @nodoc
-class _$WhishListCopyWithImpl<$Res, $Val extends WhishList>
-    implements $WhishListCopyWith<$Res> {
-  _$WhishListCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fullName = null,
-    Object? role = null,
-    Object? location = null,
-    Object? otp = null,
-    Object? username = null,
-    Object? status = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? email = null,
-    Object? resetPasswordToken = null,
-    Object? resetPasswordExpiration = null,
-    Object? salt = null,
-    Object? hash = null,
-    Object? loginAttempts = null,
-    Object? lockUntil = null,
-    Object? password = null,
-  }) {
-    return _then(_value.copyWith(
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
-      location: null == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      otp: null == otp
-          ? _value.otp
-          : otp // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      resetPasswordToken: null == resetPasswordToken
-          ? _value.resetPasswordToken
-          : resetPasswordToken // ignore: cast_nullable_to_non_nullable
-              as String,
-      resetPasswordExpiration: null == resetPasswordExpiration
-          ? _value.resetPasswordExpiration
-          : resetPasswordExpiration // ignore: cast_nullable_to_non_nullable
-              as String,
-      salt: null == salt
-          ? _value.salt
-          : salt // ignore: cast_nullable_to_non_nullable
-              as String,
-      hash: null == hash
-          ? _value.hash
-          : hash // ignore: cast_nullable_to_non_nullable
-              as String,
-      loginAttempts: null == loginAttempts
-          ? _value.loginAttempts
-          : loginAttempts // ignore: cast_nullable_to_non_nullable
-              as int,
-      lockUntil: null == lockUntil
-          ? _value.lockUntil
-          : lockUntil // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$WhishListImplCopyWith<$Res>
-    implements $WhishListCopyWith<$Res> {
-  factory _$$WhishListImplCopyWith(
-          _$WhishListImpl value, $Res Function(_$WhishListImpl) then) =
-      __$$WhishListImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String fullName,
-      String role,
-      List<String> location,
-      String otp,
-      String username,
-      String status,
-      String createdAt,
-      String updatedAt,
-      String email,
-      String resetPasswordToken,
-      String resetPasswordExpiration,
-      String salt,
-      String hash,
-      int loginAttempts,
-      String lockUntil,
-      String password});
-}
-
-/// @nodoc
-class __$$WhishListImplCopyWithImpl<$Res>
-    extends _$WhishListCopyWithImpl<$Res, _$WhishListImpl>
-    implements _$$WhishListImplCopyWith<$Res> {
-  __$$WhishListImplCopyWithImpl(
-      _$WhishListImpl _value, $Res Function(_$WhishListImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fullName = null,
-    Object? role = null,
-    Object? location = null,
-    Object? otp = null,
-    Object? username = null,
-    Object? status = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? email = null,
-    Object? resetPasswordToken = null,
-    Object? resetPasswordExpiration = null,
-    Object? salt = null,
-    Object? hash = null,
-    Object? loginAttempts = null,
-    Object? lockUntil = null,
-    Object? password = null,
-  }) {
-    return _then(_$WhishListImpl(
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
-      location: null == location
-          ? _value._location
-          : location // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      otp: null == otp
-          ? _value.otp
-          : otp // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      resetPasswordToken: null == resetPasswordToken
-          ? _value.resetPasswordToken
-          : resetPasswordToken // ignore: cast_nullable_to_non_nullable
-              as String,
-      resetPasswordExpiration: null == resetPasswordExpiration
-          ? _value.resetPasswordExpiration
-          : resetPasswordExpiration // ignore: cast_nullable_to_non_nullable
-              as String,
-      salt: null == salt
-          ? _value.salt
-          : salt // ignore: cast_nullable_to_non_nullable
-              as String,
-      hash: null == hash
-          ? _value.hash
-          : hash // ignore: cast_nullable_to_non_nullable
-              as String,
-      loginAttempts: null == loginAttempts
-          ? _value.loginAttempts
-          : loginAttempts // ignore: cast_nullable_to_non_nullable
-              as int,
-      lockUntil: null == lockUntil
-          ? _value.lockUntil
-          : lockUntil // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$WhishListImpl implements _WhishList {
-  const _$WhishListImpl(
-      {required this.fullName,
-      required this.role,
-      required final List<String> location,
-      required this.otp,
-      required this.username,
-      required this.status,
-      required this.createdAt,
-      required this.updatedAt,
-      required this.email,
-      required this.resetPasswordToken,
-      required this.resetPasswordExpiration,
-      required this.salt,
-      required this.hash,
-      required this.loginAttempts,
-      required this.lockUntil,
-      required this.password})
-      : _location = location;
-
-  factory _$WhishListImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WhishListImplFromJson(json);
-
-  @override
-  final String fullName;
-  @override
-  final String role;
-  final List<String> _location;
-  @override
-  List<String> get location {
-    if (_location is EqualUnmodifiableListView) return _location;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_location);
-  }
-
-  @override
-  final String otp;
-  @override
-  final String username;
-  @override
-  final String status;
-  @override
-  final String createdAt;
-  @override
-  final String updatedAt;
-  @override
-  final String email;
-  @override
-  final String resetPasswordToken;
-  @override
-  final String resetPasswordExpiration;
-  @override
-  final String salt;
-  @override
-  final String hash;
-  @override
-  final int loginAttempts;
-  @override
-  final String lockUntil;
-  @override
-  final String password;
-
-  @override
-  String toString() {
-    return 'WhishList(fullName: $fullName, role: $role, location: $location, otp: $otp, username: $username, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, email: $email, resetPasswordToken: $resetPasswordToken, resetPasswordExpiration: $resetPasswordExpiration, salt: $salt, hash: $hash, loginAttempts: $loginAttempts, lockUntil: $lockUntil, password: $password)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$WhishListImpl &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
-            (identical(other.role, role) || other.role == role) &&
-            const DeepCollectionEquality().equals(other._location, _location) &&
-            (identical(other.otp, otp) || other.otp == otp) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.resetPasswordToken, resetPasswordToken) ||
-                other.resetPasswordToken == resetPasswordToken) &&
-            (identical(
-                    other.resetPasswordExpiration, resetPasswordExpiration) ||
-                other.resetPasswordExpiration == resetPasswordExpiration) &&
-            (identical(other.salt, salt) || other.salt == salt) &&
-            (identical(other.hash, hash) || other.hash == hash) &&
-            (identical(other.loginAttempts, loginAttempts) ||
-                other.loginAttempts == loginAttempts) &&
-            (identical(other.lockUntil, lockUntil) ||
-                other.lockUntil == lockUntil) &&
-            (identical(other.password, password) ||
-                other.password == password));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      fullName,
-      role,
-      const DeepCollectionEquality().hash(_location),
-      otp,
-      username,
-      status,
-      createdAt,
-      updatedAt,
-      email,
-      resetPasswordToken,
-      resetPasswordExpiration,
-      salt,
-      hash,
-      loginAttempts,
-      lockUntil,
-      password);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$WhishListImplCopyWith<_$WhishListImpl> get copyWith =>
-      __$$WhishListImplCopyWithImpl<_$WhishListImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$WhishListImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _WhishList implements WhishList {
-  const factory _WhishList(
-      {required final String fullName,
-      required final String role,
-      required final List<String> location,
-      required final String otp,
-      required final String username,
-      required final String status,
-      required final String createdAt,
-      required final String updatedAt,
-      required final String email,
-      required final String resetPasswordToken,
-      required final String resetPasswordExpiration,
-      required final String salt,
-      required final String hash,
-      required final int loginAttempts,
-      required final String lockUntil,
-      required final String password}) = _$WhishListImpl;
-
-  factory _WhishList.fromJson(Map<String, dynamic> json) =
-      _$WhishListImpl.fromJson;
-
-  @override
-  String get fullName;
-  @override
-  String get role;
-  @override
-  List<String> get location;
-  @override
-  String get otp;
-  @override
-  String get username;
-  @override
-  String get status;
-  @override
-  String get createdAt;
-  @override
-  String get updatedAt;
-  @override
-  String get email;
-  @override
-  String get resetPasswordToken;
-  @override
-  String get resetPasswordExpiration;
-  @override
-  String get salt;
-  @override
-  String get hash;
-  @override
-  int get loginAttempts;
-  @override
-  String get lockUntil;
-  @override
-  String get password;
-  @override
-  @JsonKey(ignore: true)
-  _$$WhishListImplCopyWith<_$WhishListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

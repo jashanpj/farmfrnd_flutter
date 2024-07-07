@@ -1,25 +1,26 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../category/category_model.dart';
+import '../user/user_model.dart';
+
 part 'product_model.freezed.dart';
 part 'product_model.g.dart';
-
-typedef ProductList = List<Product>;
 
 @freezed
 class Product with _$Product {
   factory Product({
-    @Default(0) int id,
-    @Default('') String title,
+    @Default('') String id,
+    required Category category,
     @Default('') String description,
-    @Default('') String thumbnail,
-    @Default('') String brand,
-    @Default('') String category,
-    @Default(0.0) double rating,
-    @Default(0.0) double discountPercentage,
-    @Default(0) int stock,
-    @Default(0) int price,
-    @Default([]) List<String> images,
+    required List<double> location,
+    @Default(false) bool isProductNeededForExchange,
+    @Default(0) int quantity,
+    @Default('') String unit,
+    User? userId,
+    @JsonKey(name: 'createdAt') required String createdDate,
+    @JsonKey(name: 'updatedAt') required String updatedDate,
   }) = _Product;
 
-  factory Product.fromJson(dynamic json) => _$ProductFromJson(json);
+  factory Product.fromJson(Map<String, dynamic> json) =>
+      _$ProductFromJson(json);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter_project/shared/data/local/storage_service.dart';
 import 'package:flutter_project/shared/data/remote/remote.dart';
+import 'package:flutter_project/shared/domain/models/auth_response/auth_response.dart';
 import 'package:flutter_project/shared/domain/models/either.dart';
 import 'package:flutter_project/shared/domain/models/models.dart';
 import 'package:flutter_project/shared/exceptions/http_exception.dart';

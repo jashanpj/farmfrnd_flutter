@@ -5,7 +5,7 @@ class ProductCard extends StatelessWidget {
   final String? imageUrl;
   final String name;
   final String? nameML;
-  final double? price;
+  final num? price;
   final String? localAssetPath;
 
   const ProductCard({

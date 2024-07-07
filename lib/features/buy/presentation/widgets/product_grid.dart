@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/shared/domain/models/category/category_model.dart';
+import 'package:flutter_project/shared/domain/models/product/product_model.dart';
 import 'package:flutter_project/shared/widgets/card.dart';
 import 'package:flutter_svg/svg.dart';
 
-class CategoryGrid extends StatelessWidget {
+class ProductGrid extends StatelessWidget {
   final ScrollController scrollController;
-  final List<Category> categoryList;
+  final List<Product> categoryList;
 
-  const CategoryGrid({
+  const ProductGrid({
     Key? key,
     required this.scrollController,
     required this.categoryList,
@@ -30,9 +31,10 @@ class CategoryGrid extends StatelessWidget {
           itemBuilder: (context, index) {
             final product = categoryList[index];
             return ProductCard(
-              imageUrl: product.imageUrl,
-              name: product.name,
-              nameML: product.nameML,
+              imageUrl: product.category.imageUrl,
+              name: product.category.name,
+              nameML: product.category.nameML,
+              price: product.quantity,
             );
           },
         ),

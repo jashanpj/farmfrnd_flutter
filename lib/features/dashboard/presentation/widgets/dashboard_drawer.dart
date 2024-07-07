@@ -71,29 +71,45 @@ class DashboardDrawer extends ConsumerWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+              padding: const EdgeInsets.fromLTRB(16, 16, 8, 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Profile",
-                    style: Theme.of(context).textTheme.displaySmall,
+                    "Home",
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 20),
+                  Divider(
+                      color: Colors.grey.shade300, height: 40, thickness: 1),
+                  Text(
+                    "My Account",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Divider(
+                      color: Colors.grey.shade300,
+                      height: 40,
+                      thickness: 1), // Uses Divider instead of border
                   Text(
                     "About Farmfrnd",
-                    style: Theme.of(context).textTheme.displaySmall,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 20),
+                  Divider(
+                      color: Colors.grey.shade300, height: 40, thickness: 1),
                   Text(
                     "Learn farming with us",
-                    style: Theme.of(context).textTheme.displaySmall,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 20),
+                  Divider(
+                      color: Colors.grey.shade300, height: 40, thickness: 1),
+                  Text(
+                    "Contact us",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  SizedBox(height: 20),
                 ],
               ),
-            ),
+            )
           ],
         ),
       ),
