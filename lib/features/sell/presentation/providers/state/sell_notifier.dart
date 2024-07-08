@@ -1,5 +1,6 @@
 import 'package:flutter_project/features/buy/domain/repositories/buy_product_repository.dart';
-import 'package:flutter_project/features/buy/presentation/providers/state/buy_state.dart';
+import 'package:flutter_project/features/sell/domain/repositories/sell_products_repository.dart';
+import 'package:flutter_project/features/sell/presentation/providers/state/sell_state.dart';
 import 'package:flutter_project/shared/domain/models/either.dart';
 import 'package:flutter_project/shared/domain/models/paginated_response.dart';
 import 'package:flutter_project/shared/domain/models/product/product_model.dart';
@@ -7,33 +8,33 @@ import 'package:flutter_project/shared/exceptions/http_exception.dart';
 import 'package:flutter_project/shared/globals.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BuyNotifier extends StateNotifier<BuyState> {
-  final BuyProductRepository buyProductRepository;
+class SellNotifier extends StateNotifier<SellState> {
+  final SellProductRepository sellProductRepository;
 
-  BuyNotifier(
-    this.buyProductRepository,
-  ) : super(const BuyState.initial());
+  SellNotifier(
+    this.sellProductRepository,
+  ) : super(const SellState.initial());
 
   bool get isFetching =>
-      state.state != BuyConcreteState.loading &&
-      state.state != BuyConcreteState.fetchingMore;
+      state.state != SellConcreteState.loading &&
+      state.state != SellConcreteState.fetchingMore;
 
-  Future<void> fetchProducts(String categoryId) async {
-    if (isFetching && state.state != BuyConcreteState.fetchedAllProducts) {
+  Future<void> fetchProducts() async {
+    if (isFetching && state.state != SellConcreteState.fetchedAllProducts) {
       state = state.copyWith(
         state: state.page > 0
-            ? BuyConcreteState.fetchingMore
-            : BuyConcreteState.loading,
+            ? SellConcreteState.fetchingMore
+            : SellConcreteState.loading,
         isLoading: true,
       );
 
-      final response = await buyProductRepository.fetchProducts(
-          skip: state.page * PRODUCTS_PER_PAGE, categoryId: categoryId);
+      final response = await sellProductRepository.fetchProducts(
+          skip: state.page * PRODUCTS_PER_PAGE);
 
       updateStateFromResponse(response);
     } else {
       state = state.copyWith(
-        state: BuyConcreteState.fetchedAllProducts,
+        state: SellConcreteState.fetchedAllProducts,
         message: 'No more products available',
         isLoading: false,
       );
@@ -44,7 +45,7 @@ class BuyNotifier extends StateNotifier<BuyState> {
       Either<AppException, PaginatedResponse<dynamic>> response) {
     response.fold((failure) {
       state = state.copyWith(
-        state: BuyConcreteState.failure,
+        state: SellConcreteState.failure,
         message: failure.message,
         isLoading: false,
       );
@@ -56,8 +57,8 @@ class BuyNotifier extends StateNotifier<BuyState> {
       state = state.copyWith(
         productsList: totalProducts,
         state: totalProducts.length == data.totalPages
-            ? BuyConcreteState.fetchedAllProducts
-            : BuyConcreteState.loaded,
+            ? SellConcreteState.fetchedAllProducts
+            : SellConcreteState.loaded,
         hasData: true,
         message: totalProducts.isEmpty ? 'No products found' : '',
         page: totalProducts.length ~/ PRODUCTS_PER_PAGE,
@@ -68,6 +69,6 @@ class BuyNotifier extends StateNotifier<BuyState> {
   }
 
   void resetState() {
-    state = const BuyState.initial();
+    state = const SellState.initial();
   }
 }

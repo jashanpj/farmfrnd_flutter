@@ -16,9 +16,13 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     BuyRoute.name: (routeData) {
+      final args = routeData.argsAs<BuyRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const BuyScreen(),
+        child: BuyScreen(
+          key: args.key,
+          categoryId: args.categoryId,
+        ),
       );
     },
     DashboardRoute.name: (routeData) {
@@ -35,6 +39,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: LoginScreen(key: args.key),
       );
     },
+    SellRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SellScreen(),
+      );
+    },
     SplashRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -46,16 +56,39 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [BuyScreen]
-class BuyRoute extends PageRouteInfo<void> {
-  const BuyRoute({List<PageRouteInfo>? children})
-      : super(
+class BuyRoute extends PageRouteInfo<BuyRouteArgs> {
+  BuyRoute({
+    Key? key,
+    required String categoryId,
+    List<PageRouteInfo>? children,
+  }) : super(
           BuyRoute.name,
+          args: BuyRouteArgs(
+            key: key,
+            categoryId: categoryId,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'BuyRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<BuyRouteArgs> page = PageInfo<BuyRouteArgs>(name);
+}
+
+class BuyRouteArgs {
+  const BuyRouteArgs({
+    this.key,
+    required this.categoryId,
+  });
+
+  final Key? key;
+
+  final String categoryId;
+
+  @override
+  String toString() {
+    return 'BuyRouteArgs{key: $key, categoryId: $categoryId}';
+  }
 }
 
 /// generated route for
@@ -98,6 +131,20 @@ class LoginRouteArgs {
   String toString() {
     return 'LoginRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [SellScreen]
+class SellRoute extends PageRouteInfo<void> {
+  const SellRoute({List<PageRouteInfo>? children})
+      : super(
+          SellRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SellRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

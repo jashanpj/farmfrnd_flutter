@@ -5,22 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/features/buy/presentation/providers/buy_state_provider.dart';
 import 'package:flutter_project/features/buy/presentation/widgets/product_list.dart';
 import 'package:flutter_project/features/dashboard/presentation/widgets/dashboard_drawer.dart';
+import 'package:flutter_project/features/sell/presentation/providers/sell_state_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/state/buy_state.dart';
+import '../providers/state/sell_state.dart';
 
 @RoutePage()
-class BuyScreen extends ConsumerStatefulWidget {
-  static const String routeName = 'BuyScreen';
-  final String categoryId;
+class SellScreen extends ConsumerStatefulWidget {
+  static const String routeName = 'SellScreen';
 
-  const BuyScreen({Key? key, required this.categoryId}) : super(key: key);
+  const SellScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<BuyScreen> createState() => _BuyScreenState();
+  ConsumerState<SellScreen> createState() => _SellScreenState();
 }
 
-class _BuyScreenState extends ConsumerState<BuyScreen> {
+class _SellScreenState extends ConsumerState<SellScreen> {
   final scrollController = ScrollController();
   final TextEditingController searchController = TextEditingController();
   bool isSearchActive = false;
@@ -40,10 +40,12 @@ class _BuyScreenState extends ConsumerState<BuyScreen> {
 
   void scrollControllerListener() {
     if (scrollController.position.maxScrollExtent == scrollController.offset) {
-      final notifier = ref.read(buyNotifierProvider.notifier);
+      final notifier = ref.read(sellNotifierProvider.notifier);
       if (isSearchActive) {
         // notifier.searchProducts(searchController.text);
-      } else {}
+      } else {
+        notifier.fetchProducts();
+      }
     }
   }
 
@@ -54,13 +56,13 @@ class _BuyScreenState extends ConsumerState<BuyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(buyNotifierProvider);
+    final state = ref.watch(sellNotifierProvider);
 
     ref.listen(
-      buyNotifierProvider.select((value) => value),
-      ((BuyState? previous, BuyState next) {
+      sellNotifierProvider.select((value) => value),
+      ((SellState? previous, SellState next) {
         //show Snackbar on failure
-        if (next.state == BuyConcreteState.fetchedAllProducts) {
+        if (next.state == SellConcreteState.fetchedAllProducts) {
           if (next.message.isNotEmpty) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(next.message.toString())));
@@ -101,11 +103,9 @@ class _BuyScreenState extends ConsumerState<BuyScreen> {
                 isSearchActive = !isSearchActive;
               });
 
-              ref.read(buyNotifierProvider.notifier).resetState();
+              ref.read(sellNotifierProvider.notifier).resetState();
               if (!isSearchActive) {
-                ref
-                    .read(buyNotifierProvider.notifier)
-                    .fetchProducts(widget.categoryId);
+                ref.read(sellNotifierProvider.notifier).fetchProducts();
               }
               refreshScrollControllerListener();
             },
@@ -131,14 +131,14 @@ class _BuyScreenState extends ConsumerState<BuyScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Buy Products",
+                    "My Products",
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
                   const SizedBox(
                     height: 8,
                   ),
                   Text(
-                    "Nourish Your Community — Buy Fresh, Buy Local",
+                    "Nourish Connections — Sell Fresh, Sell Local",
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ],
@@ -146,7 +146,7 @@ class _BuyScreenState extends ConsumerState<BuyScreen> {
           const SizedBox(height: 10),
           Flexible(
             fit: FlexFit.loose,
-            child: state.state == BuyConcreteState.loading
+            child: state.state == SellConcreteState.loading
                 ? const Center(child: CircularProgressIndicator())
                 : state.hasData
                     ? Column(
@@ -155,7 +155,7 @@ class _BuyScreenState extends ConsumerState<BuyScreen> {
                             scrollController: scrollController,
                             productList: state.productsList,
                           ),
-                          if (state.state == BuyConcreteState.fetchingMore)
+                          if (state.state == SellConcreteState.fetchingMore)
                             const Padding(
                               padding: EdgeInsets.only(bottom: 16.0),
                               child: CircularProgressIndicator(),
@@ -183,8 +183,8 @@ class _BuyScreenState extends ConsumerState<BuyScreen> {
                                 onPressed: () {
                                   // call api
                                   final notifier =
-                                      ref.read(buyNotifierProvider.notifier);
-                                  notifier.fetchProducts(widget.categoryId);
+                                      ref.read(sellNotifierProvider.notifier);
+                                  notifier.fetchProducts();
                                 },
                                 child: const Text('Refresh'),
                               ),

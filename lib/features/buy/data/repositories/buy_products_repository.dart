@@ -10,7 +10,8 @@ class BuyProductRepositoryImpl extends BuyProductRepository {
 
   @override
   Future<Either<AppException, PaginatedResponse>> fetchProducts(
-      {required int skip}) {
-    return buyProductsRemoteDatasource.fetchPaginatedProducts(skip: skip);
+      {required int skip, required String categoryId}) {
+    return buyProductsRemoteDatasource.fetchPaginatedProducts(
+        skip: skip, categoryId: categoryId);
   }
 }

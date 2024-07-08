@@ -94,7 +94,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                 controller: searchController,
                 onChanged: _onSearchChanged,
               )
-            : const Text('Dashboard'),
+            : const Text('FarmFrnd'),
         actions: [
           IconButton(
             onPressed: () {
@@ -198,26 +198,16 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     // Function to handle tap on card, taking the card name as a parameter
     switch (cardName) {
       case 'Buy':
-        AutoRouter.of(context)
-            .pushAndPopUntil(const BuyRoute(), predicate: (_) => false);
+        AutoRouter.of(context).push(BuyRoute(categoryId: "none"));
         break;
 
       case 'Sell':
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('$cardName card tapped!'),
-            duration: const Duration(seconds: 2),
-          ),
-        );
+        AutoRouter.of(context).push(const SellRoute());
         break;
 
       case 'Exchange':
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('$cardName card tapped!'),
-            duration: const Duration(seconds: 2),
-          ),
-        );
+        AutoRouter.of(context)
+            .push(BuyRoute(categoryId: "668186cf99ff998181e020ac"));
         break;
       default:
         break;

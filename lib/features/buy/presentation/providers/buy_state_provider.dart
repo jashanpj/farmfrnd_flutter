@@ -6,5 +6,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final buyNotifierProvider = StateNotifierProvider<BuyNotifier, BuyState>((ref) {
   final repository = ref.watch(dashboardProductsRepositoryProvider);
-  return BuyNotifier(repository)..fetchProducts();
+  return BuyNotifier(repository);
 });

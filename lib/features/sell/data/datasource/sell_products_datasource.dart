@@ -4,57 +4,42 @@ import 'package:flutter_project/shared/domain/models/either.dart';
 import 'package:flutter_project/shared/domain/models/paginated_response.dart';
 import 'package:flutter_project/shared/exceptions/http_exception.dart';
 
-abstract class BuyProductsDatasource {
+abstract class SellProductsDatasource {
   Future<Either<AppException, PaginatedResponse>> fetchPaginatedProducts(
-      {required int skip, required String categoryId});
+      {required int skip});
 }
 
-class BuyProductsRemoteDatasource extends BuyProductsDatasource {
+class SellProductsRemoteDatasource extends SellProductsDatasource {
   final NetworkService networkService;
   final StorageService storage;
-  BuyProductsRemoteDatasource(this.networkService, this.storage);
+  SellProductsRemoteDatasource(this.networkService, this.storage);
 
   @override
   Future<Either<AppException, PaginatedResponse>> fetchPaginatedProducts(
-      {required int skip, required String categoryId}) async {
+      {required int skip}) async {
     final token = await storage.get('authToken');
     print("auth Token in Products call $token");
     // update the token for requests
     networkService.updateHeader(
       {'Authorization': 'Bearer $token'},
     );
-
-    final queryParamsNormal = {
-      'depth': '1',
-    };
-
-    final queryParamsCategory = {
-      'limit': '10',
-      'where': {
-        'or': [
-          {
-            'and': [
-              {
-                'category': {'equals': categoryId}
-              }
-            ]
-          }
-        ]
-      }
-    };
-
-//668186cf99ff998181e020ac
-    var isNormalQuery = true;
-
-    if (categoryId == 'none') {
-      isNormalQuery = true;
-    } else {
-      isNormalQuery = false;
-    }
-
-    final response = await networkService.get('/products',
-        queryParameters:
-            isNormalQuery ? queryParamsNormal : queryParamsCategory);
+    final response = await networkService.get(
+      '/products',
+      queryParameters: {
+        'limit': '10',
+        'where': {
+          'or': [
+            {
+              'and': [
+                {
+                  'userId': {'equals': '668ab6d099ff998181e0255d'}
+                }
+              ]
+            }
+          ]
+        }
+      },
+    );
 
     return response.fold(
       (l) => Left(l),

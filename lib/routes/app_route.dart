@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/features/buy/presentation/screens/buy_screen.dart';
+import 'package:flutter_project/features/sell/presentation/screens/sell_screen.dart';
 
 import '../features/authentication/presentation/screens/login_screen.dart';
 import '../features/dashboard/presentation/screens/dashboard_screen.dart';
@@ -31,5 +32,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: LoginRoute.page),
         AutoRoute(page: DashboardRoute.page),
         AutoRoute(page: BuyRoute.page),
+        AutoRoute(page: SellRoute.page),
       ];
 }

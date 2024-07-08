@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/routes/app_route.dart';
 import 'package:flutter_project/shared/domain/models/category/category_model.dart';
 import 'package:flutter_project/shared/widgets/card.dart';
 import 'package:flutter_svg/svg.dart';
@@ -29,10 +31,14 @@ class CategoryGrid extends StatelessWidget {
           itemCount: categoryList.length,
           itemBuilder: (context, index) {
             final product = categoryList[index];
-            return ProductCard(
-              imageUrl: product.imageUrl,
-              name: product.name,
-              nameML: product.nameML,
+            return GestureDetector(
+              onTap: () =>
+                  AutoRouter.of(context).push(BuyRoute(categoryId: product.id)),
+              child: ProductCard(
+                imageUrl: product.imageUrl,
+                name: product.name,
+                nameML: product.nameML,
+              ),
             );
           },
         ),

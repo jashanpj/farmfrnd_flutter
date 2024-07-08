@@ -76,9 +76,16 @@ class DashboardDrawer extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    "Home",
-                    style: Theme.of(context).textTheme.titleLarge,
+                  InkWell(
+                    onTap: () {
+                      AutoRouter.of(context).pushAndPopUntil(
+                          const DashboardRoute(),
+                          predicate: (_) => false);
+                    },
+                    child: Text(
+                      "Home",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ),
                   Divider(
                       color: Colors.grey.shade300, height: 40, thickness: 1),
