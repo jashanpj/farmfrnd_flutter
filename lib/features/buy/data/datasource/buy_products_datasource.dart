@@ -43,6 +43,40 @@ class BuyProductsRemoteDatasource extends BuyProductsDatasource {
       }
     };
 
+    final queryParamsProductsExchangeList = {
+      'where': {
+        'or': [
+          {
+            'and': [
+              {
+                'isProductNeededForExchange': {'equals': true}
+              },
+              {
+                'userId': {'not_equals': '668ab6d099ff998181e0255d'}
+              }
+            ]
+          }
+        ]
+      }
+    };
+
+    final queryParamsProductsExchangeListSelf = {
+      'where': {
+        'or': [
+          {
+            'and': [
+              {
+                'isProductNeededForExchange': {'equals': true}
+              },
+              {
+                'userId': {'equals': '668ab6d099ff998181e0255d'}
+              }
+            ]
+          }
+        ]
+      }
+    };
+
 //668186cf99ff998181e020ac
     var isNormalQuery = true;
 

@@ -31,6 +31,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const DashboardScreen(),
       );
     },
+    ExchangeRoute.name: (routeData) {
+      final args = routeData.argsAs<ExchangeRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ExchangeScreen(
+          key: args.key,
+          categoryId: args.categoryId,
+        ),
+      );
+    },
     LoginRoute.name: (routeData) {
       final args = routeData.argsAs<LoginRouteArgs>(
           orElse: () => const LoginRouteArgs());
@@ -103,6 +113,44 @@ class DashboardRoute extends PageRouteInfo<void> {
   static const String name = 'DashboardRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ExchangeScreen]
+class ExchangeRoute extends PageRouteInfo<ExchangeRouteArgs> {
+  ExchangeRoute({
+    Key? key,
+    required String categoryId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ExchangeRoute.name,
+          args: ExchangeRouteArgs(
+            key: key,
+            categoryId: categoryId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ExchangeRoute';
+
+  static const PageInfo<ExchangeRouteArgs> page =
+      PageInfo<ExchangeRouteArgs>(name);
+}
+
+class ExchangeRouteArgs {
+  const ExchangeRouteArgs({
+    this.key,
+    required this.categoryId,
+  });
+
+  final Key? key;
+
+  final String categoryId;
+
+  @override
+  String toString() {
+    return 'ExchangeRouteArgs{key: $key, categoryId: $categoryId}';
+  }
 }
 
 /// generated route for
