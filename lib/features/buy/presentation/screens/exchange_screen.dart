@@ -138,8 +138,8 @@ class _ExchangeScreenState extends ConsumerState<ExchangeScreen> {
                     height: 8,
                   ),
                   Text(
-                    "Nourish Your Community — Buy Fresh, Buy Local",
-                    style: Theme.of(context).textTheme.labelLarge,
+                    "Build Bonds: Trade Fresh, Trade Local",
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ],
               )),

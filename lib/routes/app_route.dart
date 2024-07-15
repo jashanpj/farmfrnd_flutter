@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/features/buy/presentation/screens/buy_screen.dart';
 import 'package:flutter_project/features/buy/presentation/screens/exchange_screen.dart';
+import 'package:flutter_project/features/new/presentation/screens/new_product_screen.dart';
 import 'package:flutter_project/features/sell/presentation/screens/sell_screen.dart';
 
 import '../features/authentication/presentation/screens/login_screen.dart';
@@ -35,5 +36,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: BuyRoute.page),
         AutoRoute(page: SellRoute.page),
         AutoRoute(page: ExchangeRoute.page),
+        AutoRoute(page: NewProductRoute.page),
       ];
 }

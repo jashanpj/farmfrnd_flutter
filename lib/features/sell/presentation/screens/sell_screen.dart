@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/features/buy/presentation/providers/buy_state_provider.dart';
 import 'package:flutter_project/features/buy/presentation/widgets/product_list.dart';
 import 'package:flutter_project/features/dashboard/presentation/widgets/dashboard_drawer.dart';
 import 'package:flutter_project/features/sell/presentation/providers/sell_state_provider.dart';
+import 'package:flutter_project/routes/app_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/state/sell_state.dart';
@@ -138,8 +138,8 @@ class _SellScreenState extends ConsumerState<SellScreen> {
                     height: 8,
                   ),
                   Text(
-                    "Nourish Connections — Sell Fresh, Sell Local",
-                    style: Theme.of(context).textTheme.labelLarge,
+                    "Nourish Connections: Sell Fresh, Sell Local",
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ],
               )),
@@ -194,6 +194,19 @@ class _SellScreenState extends ConsumerState<SellScreen> {
                       ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        foregroundColor: Theme.of(context).secondaryHeaderColor,
+        onPressed: () {
+          // Handle the sell action
+          AutoRouter.of(context)
+              .push(NewProductRoute(isExchangeNeedToShow: false));
+          print('Sell button pressed');
+          // Navigate to the sell screen or perform the sell action
+        },
+        child: const Icon(Icons.sell),
+        tooltip: 'Sell',
       ),
     );
   }

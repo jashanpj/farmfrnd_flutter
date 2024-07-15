@@ -49,6 +49,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: LoginScreen(key: args.key),
       );
     },
+    NewProductRoute.name: (routeData) {
+      final args = routeData.argsAs<NewProductRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: NewProductScreen(
+          key: args.key,
+          isExchangeNeedToShow: args.isExchangeNeedToShow,
+        ),
+      );
+    },
     SellRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -178,6 +188,44 @@ class LoginRouteArgs {
   @override
   String toString() {
     return 'LoginRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [NewProductScreen]
+class NewProductRoute extends PageRouteInfo<NewProductRouteArgs> {
+  NewProductRoute({
+    Key? key,
+    required bool isExchangeNeedToShow,
+    List<PageRouteInfo>? children,
+  }) : super(
+          NewProductRoute.name,
+          args: NewProductRouteArgs(
+            key: key,
+            isExchangeNeedToShow: isExchangeNeedToShow,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'NewProductRoute';
+
+  static const PageInfo<NewProductRouteArgs> page =
+      PageInfo<NewProductRouteArgs>(name);
+}
+
+class NewProductRouteArgs {
+  const NewProductRouteArgs({
+    this.key,
+    required this.isExchangeNeedToShow,
+  });
+
+  final Key? key;
+
+  final bool isExchangeNeedToShow;
+
+  @override
+  String toString() {
+    return 'NewProductRouteArgs{key: $key, isExchangeNeedToShow: $isExchangeNeedToShow}';
   }
 }
 

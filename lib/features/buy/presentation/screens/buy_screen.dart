@@ -138,8 +138,8 @@ class _BuyScreenState extends ConsumerState<BuyScreen> {
                     height: 8,
                   ),
                   Text(
-                    "Nourish Your Community — Buy Fresh, Buy Local",
-                    style: Theme.of(context).textTheme.labelLarge,
+                    "Foster Community: Buy Fresh, Buy Local",
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ],
               )),
