@@ -8,7 +8,7 @@ class ProductReuqest with _$ProductReuqest {
   const factory ProductReuqest({
     required String category,
     required String description,
-    required List<String> location,
+    required List<double> location,
     required bool isProductNeededForExchange,
     required int quantity,
     required String unit,

@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../category/category_model.dart';
+import '../user/user_converter.dart';
 import '../user/user_model.dart';
 
 part 'product_model.freezed.dart';
@@ -16,7 +17,7 @@ class Product with _$Product {
     @Default(false) bool isProductNeededForExchange,
     @Default(0) int quantity,
     @Default('') String unit,
-    User? userId,
+    @UserIdConverter() User? userId,
     @JsonKey(name: 'createdAt') required String createdDate,
     @JsonKey(name: 'updatedAt') required String updatedDate,
   }) = _Product;

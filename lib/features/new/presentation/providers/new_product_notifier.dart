@@ -16,24 +16,14 @@ class NewProductNotifier extends StateNotifier<NewProductState> {
 
   Future<void> createProduct(ProductReuqest product) async {
     if (isFetching && state.state != NewProductConcreteState.createdProduct) {
+      // Create an instance of ProductRequest
+
+      print("Product in notifier $product");
       state = state.copyWith(
           state: NewProductConcreteState.loading, isLoading: true);
 
-      // Create an instance of ProductRequest
-      final productRequest = ProductReuqest(
-        category: state.category,
-        description: state.description,
-        location: state.location,
-        isProductNeededForExchange: state.isProductNeededForExchange,
-        quantity: state.quantity,
-        unit: state.unit,
-        userId: state.userId,
-        createdAt: DateTime.now().toIso8601String(),
-        updatedAt: DateTime.now().toIso8601String(),
-      );
-
-      final response = await newProductRepository.createProduct(
-          skip: 1, product: productRequest);
+      final response =
+          await newProductRepository.createProduct(skip: 1, product: product);
 
       updateStatefromresponse(response);
     }

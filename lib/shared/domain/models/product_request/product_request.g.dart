@@ -10,8 +10,9 @@ _$ProductReuqestImpl _$$ProductReuqestImplFromJson(Map<String, dynamic> json) =>
     _$ProductReuqestImpl(
       category: json['category'] as String,
       description: json['description'] as String,
-      location:
-          (json['location'] as List<dynamic>).map((e) => e as String).toList(),
+      location: (json['location'] as List<dynamic>)
+          .map((e) => (e as num).toDouble())
+          .toList(),
       isProductNeededForExchange: json['isProductNeededForExchange'] as bool,
       quantity: json['quantity'] as int,
       unit: json['unit'] as String,

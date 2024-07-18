@@ -22,7 +22,7 @@ ProductReuqest _$ProductReuqestFromJson(Map<String, dynamic> json) {
 mixin _$ProductReuqest {
   String get category => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  List<String> get location => throw _privateConstructorUsedError;
+  List<double> get location => throw _privateConstructorUsedError;
   bool get isProductNeededForExchange => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   String get unit => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $ProductReuqestCopyWith<$Res> {
   $Res call(
       {String category,
       String description,
-      List<String> location,
+      List<double> location,
       bool isProductNeededForExchange,
       int quantity,
       String unit,
@@ -89,7 +89,7 @@ class _$ProductReuqestCopyWithImpl<$Res, $Val extends ProductReuqest>
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<double>,
       isProductNeededForExchange: null == isProductNeededForExchange
           ? _value.isProductNeededForExchange
           : isProductNeededForExchange // ignore: cast_nullable_to_non_nullable
@@ -129,7 +129,7 @@ abstract class _$$ProductReuqestImplCopyWith<$Res>
   $Res call(
       {String category,
       String description,
-      List<String> location,
+      List<double> location,
       bool isProductNeededForExchange,
       int quantity,
       String unit,
@@ -171,7 +171,7 @@ class __$$ProductReuqestImplCopyWithImpl<$Res>
       location: null == location
           ? _value._location
           : location // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<double>,
       isProductNeededForExchange: null == isProductNeededForExchange
           ? _value.isProductNeededForExchange
           : isProductNeededForExchange // ignore: cast_nullable_to_non_nullable
@@ -206,7 +206,7 @@ class _$ProductReuqestImpl implements _ProductReuqest {
   const _$ProductReuqestImpl(
       {required this.category,
       required this.description,
-      required final List<String> location,
+      required final List<double> location,
       required this.isProductNeededForExchange,
       required this.quantity,
       required this.unit,
@@ -222,9 +222,9 @@ class _$ProductReuqestImpl implements _ProductReuqest {
   final String category;
   @override
   final String description;
-  final List<String> _location;
+  final List<double> _location;
   @override
-  List<String> get location {
+  List<double> get location {
     if (_location is EqualUnmodifiableListView) return _location;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_location);
@@ -305,7 +305,7 @@ abstract class _ProductReuqest implements ProductReuqest {
   const factory _ProductReuqest(
       {required final String category,
       required final String description,
-      required final List<String> location,
+      required final List<double> location,
       required final bool isProductNeededForExchange,
       required final int quantity,
       required final String unit,
@@ -321,7 +321,7 @@ abstract class _ProductReuqest implements ProductReuqest {
   @override
   String get description;
   @override
-  List<String> get location;
+  List<double> get location;
   @override
   bool get isProductNeededForExchange;
   @override

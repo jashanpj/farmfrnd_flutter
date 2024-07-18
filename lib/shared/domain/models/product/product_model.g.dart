@@ -18,9 +18,7 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
           json['isProductNeededForExchange'] as bool? ?? false,
       quantity: json['quantity'] as int? ?? 0,
       unit: json['unit'] as String? ?? '',
-      userId: json['userId'] == null
-          ? null
-          : User.fromJson(json['userId'] as Map<String, dynamic>),
+      userId: const UserIdConverter().fromJson(json['userId']),
       createdDate: json['createdAt'] as String,
       updatedDate: json['updatedAt'] as String,
     );
@@ -34,7 +32,7 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'isProductNeededForExchange': instance.isProductNeededForExchange,
       'quantity': instance.quantity,
       'unit': instance.unit,
-      'userId': instance.userId,
+      'userId': const UserIdConverter().toJson(instance.userId),
       'createdAt': instance.createdDate,
       'updatedAt': instance.updatedDate,
     };

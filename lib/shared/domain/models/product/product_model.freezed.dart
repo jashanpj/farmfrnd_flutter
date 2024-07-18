@@ -27,6 +27,7 @@ mixin _$Product {
   bool get isProductNeededForExchange => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   String get unit => throw _privateConstructorUsedError;
+  @UserIdConverter()
   User? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdAt')
   String get createdDate => throw _privateConstructorUsedError;
@@ -51,7 +52,7 @@ abstract class $ProductCopyWith<$Res> {
       bool isProductNeededForExchange,
       int quantity,
       String unit,
-      User? userId,
+      @UserIdConverter() User? userId,
       @JsonKey(name: 'createdAt') String createdDate,
       @JsonKey(name: 'updatedAt') String updatedDate});
 
@@ -163,7 +164,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       bool isProductNeededForExchange,
       int quantity,
       String unit,
-      User? userId,
+      @UserIdConverter() User? userId,
       @JsonKey(name: 'createdAt') String createdDate,
       @JsonKey(name: 'updatedAt') String updatedDate});
 
@@ -251,7 +252,7 @@ class _$ProductImpl implements _Product {
       this.isProductNeededForExchange = false,
       this.quantity = 0,
       this.unit = '',
-      this.userId,
+      @UserIdConverter() this.userId,
       @JsonKey(name: 'createdAt') required this.createdDate,
       @JsonKey(name: 'updatedAt') required this.updatedDate})
       : _location = location;
@@ -285,6 +286,7 @@ class _$ProductImpl implements _Product {
   @JsonKey()
   final String unit;
   @override
+  @UserIdConverter()
   final User? userId;
   @override
   @JsonKey(name: 'createdAt')
@@ -361,7 +363,7 @@ abstract class _Product implements Product {
           final bool isProductNeededForExchange,
           final int quantity,
           final String unit,
-          final User? userId,
+          @UserIdConverter() final User? userId,
           @JsonKey(name: 'createdAt') required final String createdDate,
           @JsonKey(name: 'updatedAt') required final String updatedDate}) =
       _$ProductImpl;
@@ -383,6 +385,7 @@ abstract class _Product implements Product {
   @override
   String get unit;
   @override
+  @UserIdConverter()
   User? get userId;
   @override
   @JsonKey(name: 'createdAt')

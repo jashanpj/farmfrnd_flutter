@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/services/user_cache_service/domain/providers/current_user_provider.dart';
+import 'package:flutter_project/shared/domain/models/product_request/product_request.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_project/features/buy/presentation/providers/buy_state_provider.dart';
 import 'package:flutter_project/features/dashboard/presentation/widgets/dashboard_drawer.dart';
@@ -102,7 +104,7 @@ class _NewProductScreenState extends ConsumerState<NewProductScreen> {
               const SizedBox(height: 20),
               _buildExchangeCheckbox(),
               const SizedBox(height: 20),
-              _buildSubmitButton(),
+              _buildSubmitButton(context, ref),
             ],
           ),
         ),
@@ -238,14 +240,35 @@ class _NewProductScreenState extends ConsumerState<NewProductScreen> {
     );
   }
 
-  Widget _buildSubmitButton() {
+  Widget _buildSubmitButton(BuildContext context, WidgetRef ref) {
     return Center(
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState?.validate() ?? false) {
             // Handle the submit action
             print('Submit button pressed');
             // Add your product submission logic here
+
+            // Fetch current user
+            final user = await ref.read(currentUserProvider.future);
+            print("User: ${user?.fullName}, Email: ${user?.email}");
+
+            final productRequest = ProductReuqest(
+              category: selectedProduct?.id ?? "",
+              description: descriptionController.text,
+              location: user?.location ?? [0, 0],
+              isProductNeededForExchange: isExchangeChecked,
+              quantity: int.parse(quantityController.text),
+              unit: selectedQuantityType,
+              userId: user?.id ?? "",
+              createdAt: DateTime.now().toIso8601String(),
+              updatedAt: DateTime.now().toIso8601String(),
+            );
+
+            // Call the method to create a new product
+            ref
+                .read(newProductsNotifierProvider.notifier)
+                .createProduct(productRequest);
           }
         },
         child: const Text('Submit'),
